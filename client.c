@@ -1,3 +1,7 @@
+/* Christopher Kane, jwi705
+   Sarah Marynak, oos266
+*/
+
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -5,8 +9,8 @@
 #include <string.h>
 #include <errno.h>
 
-#define SERVER_IP "000"
-#define SERVER_PORT 00
+#define SERVER_IP "69.61.103.44"
+#define SERVER_PORT 7891
 #define DATA_SIZE 99
 
 
@@ -39,10 +43,10 @@ int main(int argc, char *argv[]) {
     printf("Message: ");
     fgets(outMessage, DATA_SIZE, stdin);
     outMessage[sizeof(outMessage)-1] = '\0'; //make it null-terminated
-    printf("Outgoing message: \"%s\"\n", outMessage);
+    printf("Outgoing message: %s\n", outMessage);
     
     //send the message using sendto(), and check the error return value
-    returnCode = sendto(sd, (char *)outMessage, DATA_SIZE, MSG_CONFIRM, (struct sockaddr *)&server, sizeof(server));
+    returnCode = sendto(sd, (char *)outMessage, strlen(outMessage), MSG_CONFIRM, (struct sockaddr *)&server, addrSize);
     if(returnCode < 0) {
       printf("Failed to send message: %s\n", strerror(errno));
       return -1;
@@ -53,7 +57,7 @@ int main(int argc, char *argv[]) {
     
     if(nBytes > 0) {
       inMessage[nBytes] = '\0';
-      printf("Server says: \"%s\"\n", inMessage);
+      printf("Server says: %s\n", inMessage);
       break;
     }
     else {

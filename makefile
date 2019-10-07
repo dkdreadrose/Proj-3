@@ -1,3 +1,6 @@
+# Christopher Kane, jwi705
+# Sarah Marynak, oos266
+
 p3OBJECTS = client.o testServer.o
 p3INCLUDES = testServer.h
 
