@@ -1,5 +1,5 @@
 #include <sys/types.h>
-#include <arps/inet.h>
+#include <arpa/inet.h>
 #include <sys/socket.h>
 #include <stdio.h>
 #include <string.h>
@@ -20,8 +20,10 @@ int main(int argc, char *argv[]) {
   
   //create the socket
   sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-  if(sd < 0) 
-    errExit("Failed to create socket: %s", strerror(errno));
+  if(sd < 0) {
+    printf("Failed to create socket: %s", strerror(errno));
+    return -1;
+  }
   
   //fill out server address structure
   server.sin_family = AF_INET;
@@ -37,12 +39,14 @@ int main(int argc, char *argv[]) {
     printf("Message: ");
     fgets(outMessage, DATA_SIZE, stdin);
     outMessage[sizeof(outMessage)-1] = '\0'; //make it null-terminated
-    printf('Outgoing message: "%s"', outMessage);
+    printf("Outgoing message: \"%s\"", outMessage);
     
     //send the message using sendto(), and check the error return value
     returnCode = sendto(sd, (char *)outMessage, DATA_SIZE, MSG_CONFIRM, (struct sockaddr *)&server, sizeof(server));
-    if(returnCode < 0) 
-      errExit("Failed to send message: %s", strerror(errno));
+    if(returnCode < 0) {
+      printf("Failed to send message: %s", strerror(errno));
+      return -1;
+    }
     
     //receive and process the message from the server
     nBytes = recvfrom(sd, (char *) inMessage, DATA_SIZE, MSG_WAITALL, (struct sockaddr*) &server, &addrSize);

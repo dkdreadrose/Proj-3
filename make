@@ -4,12 +4,12 @@ p3INCLUDES = testServer.h
 
 # Default Rules for building each .o
 %.o: %.c ${p3INCLUDES}
-gcc –g –c $<
+    gcc –g –c $<
 
 # Rule for building the executable
 p3: ${p3OBJECTS}
-gcc –g –o p3 ${p3OBJECTS}
+    gcc –g –o p3 ${p3OBJECTS}
 
 # Special rule to remove the .o files
 clean:
- rm –f ${p3OBJECTS}
+    rm –f ${p3OBJECTS}
