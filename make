@@ -1,6 +1,6 @@
 # Define the list of .o files for p3
 p3OBJECTS = client.o testServer.o
-p3INCLUDES = client.h testServer.h
+p3INCLUDES = testServer.h
 
 # Default Rules for building each .o
 %.o: %.c ${p3INCLUDES}
