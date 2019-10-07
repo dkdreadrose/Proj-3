@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   //create the socket
   sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if(sd < 0) {
-    printf("Failed to create socket: %s", strerror(errno));
+    printf("Failed to create socket: %s\n", strerror(errno));
     return -1;
   }
   
@@ -39,12 +39,12 @@ int main(int argc, char *argv[]) {
     printf("Message: ");
     fgets(outMessage, DATA_SIZE, stdin);
     outMessage[sizeof(outMessage)-1] = '\0'; //make it null-terminated
-    printf("Outgoing message: \"%s\"", outMessage);
+    printf("Outgoing message: \"%s\"\n", outMessage);
     
     //send the message using sendto(), and check the error return value
     returnCode = sendto(sd, (char *)outMessage, DATA_SIZE, MSG_CONFIRM, (struct sockaddr *)&server, sizeof(server));
     if(returnCode < 0) {
-      printf("Failed to send message: %s", strerror(errno));
+      printf("Failed to send message: %s\n", strerror(errno));
       return -1;
     }
     
