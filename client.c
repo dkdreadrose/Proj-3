@@ -5,8 +5,6 @@
 #include <string.h>
 #include <errno.h>
 
-#include "client.h"
-
 #define SERVER_IP "000"
 #define SERVER_PORT 00
 #define DATA_SIZE 99
