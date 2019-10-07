@@ -1,15 +1,14 @@
-# Define the list of .o files for p3
 p3OBJECTS = client.o testServer.o
 p3INCLUDES = testServer.h
 
-# Default Rules for building each .o
 %.o: %.c ${p3INCLUDES}
     gcc –g –c $<
 
-# Rule for building the executable
-p3: ${p3OBJECTS}
-    gcc –g –o p3 ${p3OBJECTS}
+server: testServer.o
+    gcc -g -o server testServer.o
 
-# Special rule to remove the .o files
+client: client.o
+    gcc –g –o client client.o
+
 clean:
     rm –f ${p3OBJECTS}
