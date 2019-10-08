@@ -48,9 +48,9 @@ int main(int argc, char *argv[]) {
     printf("Outgoing message: %s\n", outMessage);
     
     //send the message using sendto(), and check the error return value
-    returnCode = sendto(sd, (char *)outMessage, strlen(outMessage), MSG_CONFIRM, (struct sockaddr *)&server, addrSize);
+    returnCode = sendto(sd, (char *)outMessage, DATA_SIZE, MSG_CONFIRM, (struct sockaddr *)&server, addrSize);
     if(returnCode < 0) {
-      printf("Failed to send message: %s\n", strerror(errno));
+      printf("Failed to send message: %d, %d\n", returnCode, strerror(errno));
       return -1;
     }
     
