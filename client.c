@@ -9,7 +9,7 @@
 #include <string.h>
 #include <errno.h>
 
-#define SERVER_IP "69.61.103.44"
+#define SERVER_IP "69.61.103.44"//"129.115.27.202"//
 #define SERVER_PORT 7891
 #define DATA_SIZE 99
 
@@ -33,10 +33,12 @@ int main(int argc, char *argv[]) {
   server.sin_family = AF_INET;
   server.sin_port = htons(SERVER_PORT); // http uses port 80
   server.sin_addr.s_addr = inet_addr(SERVER_IP);
-  memset(server.sin_zero, '\0', sizeof server.sin_zero); 
+  memset(server.sin_zero, '\0', sizeof(server.sin_zero)); 
   
   addrSize = sizeof(server);
   
+  printf("Server IP: %s, Server Port: %d\n", SERVER_IP, SERVER_PORT);
+
   //start loop to get message from user, send to server, and wait for response
   while(1) {
     //get the outgoing message

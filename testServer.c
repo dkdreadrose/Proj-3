@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 #define SERVER_IP "129.115.27.202"
-#define SERVER_PORT 8080
+#define SERVER_PORT 7891
 #define DATA_SIZE 99
 
 

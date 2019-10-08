@@ -2,10 +2,6 @@
 # Sarah Marynak, oos266
 
 p3OBJECTS = client.o testServer.o
-p3INCLUDES = testServer.h
-
-%.o: %.c ${p3INCLUDES}
-	gcc -g -c $<
 
 server: testServer.o
 	gcc -g -o server testServer.o
