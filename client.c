@@ -9,7 +9,7 @@
 #include <string.h>
 #include <errno.h>
 
-#define SERVER_IP "69.61.103.44"//"129.115.27.202"//
+#define SERVER_IP "69.61.103.44"
 #define SERVER_PORT 7891
 #define DATA_SIZE 99
 
